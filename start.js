@@ -16,7 +16,8 @@ app.configure(function(){
 });
 
 app.get('/', function(rerq, res){
-    res.end("Hello world!");
+    res.send("Hello world!");
+    res.end("Some test!");
 });
 
 if ('development' == app.get('env')) {
