@@ -15,7 +15,7 @@ app.configure(function(){
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.get('/', function(rerq, res){
+app.get('/', function(req, res){
     res.end("Hello world! 123");
 });
 
