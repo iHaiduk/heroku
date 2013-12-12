@@ -1,2 +1,1 @@
-![CodeshipStatus](https://www.codeship.io/projects/f8200190-452f-0131-27b3-4afe5eaaa101/status)
-Yaris
+![CodeshipStatus](https://www.codeship.io/projects/d6812b20-4557-0131-916d-361e03ffa97e/status)
