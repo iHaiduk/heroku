@@ -5,7 +5,6 @@ var app = express();
 
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Users;
 
 mongoose.connect('mongodb://ncast:9322022@ds039487.mongolab.com:39487/ncast');
 var db = mongoose.connection;
