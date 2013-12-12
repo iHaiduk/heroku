@@ -16,7 +16,7 @@ app.configure(function(){
 });
 
 app.get('/', function(req, res){
-    res.end("Hello world! 123");
+    res.end("Hello world! 123 456");
 });
 
 if ('development' == app.get('env')) {
