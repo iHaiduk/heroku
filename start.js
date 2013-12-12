@@ -1,4 +1,27 @@
-var app = require("./app");
-var port = process.env.PORT || 5000;
+var http = require('http');
+var express = require('express');
+var path = require('path');
+var app = express();
 
-app.listen(port)
+app.configure(function(){
+    app.set('port', process.env.PORT || 3000);
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'jade');
+    app.use(express.favicon());
+    app.use(express.logger('dev'));
+    app.use(express.json());
+    app.use(express.urlencoded());
+    app.use(app.router);
+    app.use(express.static(path.join(__dirname, 'public')));
+});
+
+app.get('/', function(rerq, res){
+    res.end("Hello world!");
+});
+
+if ('development' == app.get('env')) {
+    app.use(express.errorHandler());
+}
+
+app.listen(app.get('port'));
+console.log('Express server listening on port http://127.0.0.1:' + app.get('port')+'/');
