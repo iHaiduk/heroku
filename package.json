@@ -11,7 +11,8 @@
     "npm": "1.2.x"
   },
   "dependencies": {
-    "express": "3.x",
+      "express": "*",
+      "mongoose": "*",
     "zombie": "*",
     "ejs": "*"
   }
