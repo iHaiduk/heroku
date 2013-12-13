@@ -18,6 +18,7 @@ app.configure(function(){
 // Route
 app.get('/', function(req, res){
     var controller = require("./controllers");
+    res.end("Hello!");
 });
 
 
