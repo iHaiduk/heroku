@@ -1,13 +1,30 @@
 {
-  "name": "application-name",
+  "author": "Yaroslav & HIV",
+  "contributors": [
+    "Yaroslav Goisa <yarisrespect@gmail.com>",
+    "Igor Gayduk <ht_hiv@i.ua>"
+  ],
+  "name": "ejs-locals",
+  "description": "DEscription",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/..."
+  },
+  "homepage": "....",
+  "engines": {
+    "node": ">=0.6.0"
   },
   "dependencies": {
-    "express": "3.x",
-    "ejs": "*",
-	"mongoose": "*"
+    "ejs": "0.8.x"
+  },
+  "devDependencies": {
+    "express": "~3.0.0",
+    "mocha": "*",
+    "should": "*",
+    "methods": "0.0.1"
+  },
+  "scripts": {
+    "test": "mocha -r should -R spec"
   }
 }
