@@ -13,7 +13,9 @@ Controller.prototype.actionIndex = function (  ){
 };
 
 
-Controller.prototype.actionError = function (  ){
+Controller.prototype.actionError = function ( error_code ){
+    this.res.statusCode = !isNaN(error_code) ? error_code : 404 ;
+    console.log("Controller->actoinError("+error_code+")");
     this.res.end("404");
 };
 

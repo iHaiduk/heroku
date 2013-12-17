@@ -3,8 +3,9 @@ module.exports =  {
     'defaultController' : 'site',
     'defaultAction' : 'index',
 
-    // TODO: сделать УРЛ менеджер
-    'router' : [
-
-    ]
+    'public': __dirname + "/../public",
+    'router' : {
+        "/about" : "site/about",
+        "/my" : "site/about"
+    }
 };

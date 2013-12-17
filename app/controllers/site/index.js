@@ -11,7 +11,8 @@ SiteController.prototype.actionIndex = function(){
     this.render('index', { title: 'Home', message: 'Home page, layout:' });
 };
 
-SiteController.prototype.actionAbout = function(){
+SiteController.prototype.actionAbout = function(params){
+    console.log(params);
     this.render('index', { title: 'About', message: 'About us, layout:' });
 };
 
