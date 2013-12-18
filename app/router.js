@@ -7,9 +7,6 @@ exports.route = function(reg, res){
 
     // is file request:
     if( reg.params[0].search(/\.[a-zA-Z]+/) != -1 ){
-
-
-
         var path = require("path");
         var filePath = "";
         try { filePath = decodeURIComponent(reg.params[0]); } catch(err){ CMain.actionError(400);  return; }
@@ -45,25 +42,23 @@ exports.route = function(reg, res){
         if( route[1] ){
             try {
                 var controller = require(__dirname + '/controllers/' + route[1] );
-                if(controller){
-                    var cc = new controller(res);
-                    if( route[2] ){
-                        var method = "action" + route[2][0].toUpperCase() + route[2].substr(1).toLowerCase();
-                        if( cc[method] ){
-                            var count_props = 0, props = [];
-                            for( var param in route  ){
-                                count_props++;
-                                if(count_props>=4){
-                                    props[count_props-4] = route[param];
-                                }
+                var cc = new controller(res);
+                if( route[2] ){
+                    var method = "action" + route[2][0].toUpperCase() + route[2].substr(1).toLowerCase();
+                    if( cc[method] ){
+                        var count_props = 0, props = [];
+                        for( var param in route  ){
+                            count_props++;
+                            if(count_props>=4){
+                                props[count_props-4] = route[param];
                             }
-                            cc[method](props);
-                        } else {  CMain.actionError(); }
-                    } else { cc["actionIndex"](); }
-                } else {  CMain.actionError(); }
+                        }
+                        cc[method](props);
+                    } else {  CMain.actionError(); }
+                } else { cc["actionIndex"](); }
                 /////////////////////////
             } catch(err){
-                CMain.actionError();
+                CMain.actionError(404);
             }
         } else {
             var Controller = require(__dirname + '/controllers/Controller' );
