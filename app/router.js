@@ -17,16 +17,11 @@ exports.route = function(reg, res){
         filePath = path.normalize( path.join(config.public, filePath) );
 
         var fs = require("fs");
-        fs.stat(filePath, function(err, stats){
-            if(err || !stats.isFile() ){
-                CMain.actionError(404);
-            } else {
-                fs.readFile(filePath, function(err, content){
-                    if(err) throw err;
-                    res.end(content);
-                });
-            }
-        });
+        var stream = new fs.ReadStream(filePath);
+        stream.pipe(res);
+        stream.on("error", function(){ CMain.actionError(400);  return; });
+        res.on("close", function(){ stream.destroy(); });
+
     } else {
 
         // Default:
