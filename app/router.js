@@ -1,5 +1,7 @@
-exports.route = function(reg, res){
+var controllers = {};
 
+exports.route = function(reg, res){
+    var request = reg;
     var config = require('./config');
 
     var MainController = require(__dirname + '/controllers/Controller' );
@@ -16,7 +18,11 @@ exports.route = function(reg, res){
         var fs = require("fs");
         var stream = new fs.ReadStream(filePath);
         stream.pipe(res);
-        stream.on("error", function(){ CMain.actionError(400);  return; });
+        stream.on("error", function(){
+            console.log("Stream pipe error: "+reg.params[0]);
+            CMain.actionError(400);
+            return;
+        });
         res.on("close", function(){ stream.destroy(); });
 
     } else {
@@ -41,8 +47,15 @@ exports.route = function(reg, res){
 
         if( route[1] ){
             try {
-                var controller = require(__dirname + '/controllers/' + route[1] );
-                var cc = new controller(res);
+                if( ! controllers.hasOwnProperty(route[1]) ){
+                    controller = require(__dirname + '/controllers/' + route[1] );
+                    controllers[route[1]] = new controller(res);
+                } else {
+                    controllers[route[1]].res = res;
+                }
+
+                var cc = controllers[route[1]];
+
                 if( route[2] ){
                     var method = "action" + route[2][0].toUpperCase() + route[2].substr(1).toLowerCase();
                     if( cc[method] ){
@@ -53,11 +66,15 @@ exports.route = function(reg, res){
                                 props[count_props-4] = route[param];
                             }
                         }
-                        cc[method](props);
-                    } else {  CMain.actionError(); }
-                } else { cc["actionIndex"](); }
+                        cc[method](props, request);
+                    } else {
+                        console.log(" cc[method] == false, Call index error 404: "+reg.params[0]);
+                        CMain.actionError();
+                    }
+                } else {  cc["actionIndex"](); }
                 /////////////////////////
             } catch(err){
+                console.log("Call index error 404: "+reg.params[0]);
                 CMain.actionError(404);
             }
         } else {
