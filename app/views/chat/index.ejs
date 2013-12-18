@@ -1,0 +1,85 @@
+<% layout('../layout/main') -%>
+<h1><%= title %></h1>
+<div class="ui two column grid">
+  <div class="column">
+    <div class="ui piled blue segment">
+      <h2 class="ui header">
+        <i class="icon inverted circular blue comment"></i> Comments
+      </h2>
+      <div class="ui comments">
+
+         <div style='height: 320px; overflow: auto;'>
+            <div class="comment">
+              <a class="avatar">
+                <img src="http://semantic-ui.com/images/demo/avatar.jpg">
+              </a>
+              <div class="content">
+                <a class="author">Dog Doggington</a>
+                <div class="metadata">
+                  <span class="date">2 days ago</span>
+                </div>
+                <div class="text">
+                  I think this is a great idea and i am voting on it
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <form class="ui reply form">
+          <div class="field">
+            <textarea rows="2"></textarea>
+          </div>
+          <div class="ui fluid blue labeled submit icon button" onclick="$('form').submit();">
+            <i class="icon edit"></i> Add Reply
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+ $("form").submit(function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/chat/send", true);
+    xhr.send( JSON.stringify({ message: $(this).find("textarea").val() }) );
+    $(this).find("textarea").val("");
+    return false;
+ });
+
+ subscribe();
+
+ function subscribe() {
+     var xhr = new XMLHttpRequest();
+     xhr.open("GET", "/chat/subscribe", true);
+     xhr.onload = function(){
+        $(".ui.comments .comment").last().after( addComment(this.responseText) );
+
+        subscribe();
+     }
+
+     xhr.onerror = xhr.onabort = function(){
+        setTimeout(subscribe, 500);
+     }
+
+     xhr.send('');
+ }
+
+ function addComment( msg ){
+        return '<div class="comment">'+
+                  '<a class="avatar">'+
+                    '<img src="http://semantic-ui.com/images/demo/avatar.jpg">'+
+                  '</a>'+
+                  '<div class="content">'+
+                    '<a class="author">Dog Doggington</a>'+
+                    '<div class="metadata">'+
+                      '<span class="date">2 days ago</span>'+
+                    '</div>'+
+                    '<div class="text">'+
+                      msg+
+                    '</div>'+
+                  '</div>'+
+                '</div>';
+ }
+
+</script>
