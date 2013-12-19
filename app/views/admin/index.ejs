@@ -1,48 +1,101 @@
 <% layout('../layout/admin') -%>
+
 <div class="ui fixed transparent inverted main menu">
     <div class="container">
-        <!--<a class="launch item"><i class="icon list layout"></i> Content</a>-->
+        <a class="launch item"><i class="icon list layout"></i> Content</a>
         <div class="title item">
             <b>Admin Panel:</b> <%= title %>
         </div>
+
         <div class="right menu">
-            <a class="popup overview icon item" data-content="Документация">
+            <a class="popup overview icon item" data-content="Toggle Definition">
                 <i class="book icon"></i>
             </a>
-            <a class="popup designer icon item" data-content="График">
+            <a class="popup designer icon item" data-content="Designer Mode">
                 <i class="basic paint icon"></i>
             </a>
-            <a class="popup developer icon item" data-content="Выход">
+            <a class="popup developer icon item" data-content="Developer Mode">
                 <i class="terminal icon"></i>
             </a>
+
+        </div>
+    </div>
+</div>
+<!--<div class="ui black huge launch right attached button">
+    <i class="icon list layout"></i>
+    <span class="text">Menu</span>
+</div>-->
+
+<div class="segment">
+    <div class="container">
+        <div class="introduction">
+            <h1 class="ui dividing header">
+                Menu
+            </h1>
+            <p>Настройка меню сайта</p>
         </div>
     </div>
 </div>
 
-<div class="ui vertical menu">
-    <div class="item">
-        <div class="ui input"><input type="text" placeholder="Search..."></div>
-    </div>
-    <div class="item">
-        <i class="home icon"></i> Home
-        <div class="menu">
-            <a class="active item">Search</a>
-            <a class="item">Add</a>
-            <a class="item">Remove</a>
+<div class="main container">
+
+<div class="peek">
+    <div class="ui vertical menu">
+        <div class="item">
+            <i class="home icon"></i> Главная
         </div>
-    </div>
-    <a class="item">
-        <i class="grid layout icon"></i> Browse
-    </a>
-    <a class="item">
-        <i class="mail icon"></i> Messages
-    </a>
-    <div class="ui dropdown item">
-        More <i class="dropdown icon"></i>
-        <div class="menu">
-            <a class="item"><i class="edit icon"></i> Edit Profile</a>
-            <a class="item"><i class="globe icon"></i> Choose Language</a>
-            <a class="item"><i class="settings icon"></i> Account Settings</a>
+        <div class="ui dropdown item">
+            Меню <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item"><i class="grid layout icon"></i>Все меню</a>
+                <a class="item"><i class="add icon"></i> Добавить </a>
+            </div>
+        </div>
+        <div class="ui dropdown item">
+            Страницы <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item"><i class="reorder icon"></i> Все страницы</a>
+                <a class="item"><i class="add icon"></i> Добавить </a>
+            </div>
         </div>
     </div>
 </div>
+
+<h2 class="ui dividing header">Types</h2>
+    <ul class="ui list">
+        <li>Cats</li>
+        <li>Horses</li>
+        <li>Dogs</li>
+        <ul>
+            <li>Labradoodles</li>
+            <li>Shiba Inu</li>
+            <li>Mastiff</li>
+        </ul>
+
+    </ul>
+<!--<div class="example">
+    <h4 class="ui header">Menu</h4>
+
+    <p>A menu</p>
+    <div class="ui menu">
+        <a class="active item">
+            <i class="home icon"></i> Home
+        </a>
+        <a class="item">
+            <i class="mail icon"></i> Messages
+        </a>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+</div>
+
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
