@@ -1,9 +1,16 @@
+var config = require('./config');
+
 var controllers = {};
 
-exports.route = function(reg, res){
-    var request = reg;
-    var config = require('./config');
 
+//var mongoose = require("mongoose");
+
+
+exports.route = function(reg, res){
+    //mongoose.connection.close();
+
+
+    var request = reg;
     var MainController = require(__dirname + '/controllers/Controller' );
     var CMain = new MainController(res);
 
@@ -49,11 +56,14 @@ exports.route = function(reg, res){
             try {
                 if( ! controllers.hasOwnProperty(route[1]) ){
                     controller = require(__dirname + '/controllers/' + route[1] );
-                    controllers[route[1]] = new controller(res);
+                    var createdC =  new controller(res);
+                    //createdC.db= db;
+                    controllers[route[1]] = createdC;
                 } else {
                     controllers[route[1]].res = res;
                 }
 
+                //controllers[route[1]].db= db;
                 var cc = controllers[route[1]];
 
                 if( route[2] ){

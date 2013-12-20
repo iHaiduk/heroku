@@ -39,63 +39,106 @@
 
 <div class="main container">
 
-<div class="peek">
-    <div class="ui vertical menu">
-        <div class="item">
-            <i class="home icon"></i> Главная
-        </div>
-        <div class="ui dropdown item">
-            Меню <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item"><i class="grid layout icon"></i>Все меню</a>
-                <a class="item"><i class="add icon"></i> Добавить </a>
-            </div>
-        </div>
-        <div class="ui dropdown item">
-            Страницы <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item"><i class="reorder icon"></i> Все страницы</a>
-                <a class="item"><i class="add icon"></i> Добавить </a>
-            </div>
+    <div class="peek">
+        <div class="ui vertical menu">
+            <% for(var i=0; i<menus.length; i++) {%>
+                <%if (menus[i].child.length > 0) { %>
+                    <div class="ui dropdown item">
+                        <%= menus[i].name %> <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <% for(var k=0; k<menus[i].child.length; k++) {%>
+                                <a class="item" href="/admin<%= menus[i].child[k].link %>"><i class="<%= menus[i].child[k].icon %> layout icon"></i><%= menus[i].child[k].name %></a>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
+                <%if (menus[i].child.length == 0) { %>
+                    <a class="item active">
+                        <i class="<%= menus[i].icon %> icon"></i> <%= menus[i].name %>
+                    </a>
+                <% } %>
+            <% } %>
         </div>
     </div>
-</div>
-
-<h2 class="ui dividing header">Types</h2>
-    <ul class="ui list">
-        <li>Cats</li>
-        <li>Horses</li>
-        <li>Dogs</li>
-        <ul>
-            <li>Labradoodles</li>
-            <li>Shiba Inu</li>
-            <li>Mastiff</li>
-        </ul>
-
-    </ul>
-<!--<div class="example">
-    <h4 class="ui header">Menu</h4>
-
-    <p>A menu</p>
-    <div class="ui menu">
-        <a class="active item">
-            <i class="home icon"></i> Home
-        </a>
-        <a class="item">
-            <i class="mail icon"></i> Messages
-        </a>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
+    <div class="example">
+        <div class="ui small buttons selectedmenu">
+            <div class="ui button">Главное меню</div>
+            <div class="or"></div>
+            <div class="ui button">Дополнительное меню</div>
+        </div>
+        <ul class="ui list">
+            <li>
+                <div class="ui segment">
+                    Первый пункт
+                    <div class="ui dropdown">
+                        <div class="text">Настройки</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item"><i class="edit icon"></i>Редактировать</div>
+                            <div class="item"><i class="delete icon"></i>Удалить</div>
+                            <div class="item"><i class="hide icon"></i>Показать</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </li>
+            <ul>
+                <li>
+                    <div class="ui segment">
+                        Первый пункт
+                        <div class="ui dropdown">
+                            <div class="text">Настройки</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item"><i class="edit icon"></i>Редактировать</div>
+                                <div class="item"><i class="delete icon"></i>Удалить</div>
+                                <div class="item"><i class="hide icon"></i>Показать</div>
+                                <div class="item"><i class="up icon"></i>Уровень выше</div>
+                                <div class="item"><i class="down icon"></i>Уровень ниже</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ui segment">
+                        Второй пункт
+                        <div class="ui dropdown">
+                            <div class="text">Настройки</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item"><i class="edit icon"></i>Редактировать</div>
+                                <div class="item"><i class="delete icon"></i>Удалить</div>
+                                <div class="item"><i class="hide icon"></i>Показать</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <li>
+                <div class="ui segment">
+                    Второй пункт
+                    <div class="ui dropdown">
+                        <div class="text">Настройки</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item"><i class="edit icon"></i>Редактировать</div>
+                            <div class="item"><i class="delete icon"></i>Удалить</div>
+                            <div class="item"><i class="hide icon"></i>Показать</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
-</div>-->
 </div>
 
 <script>
-    $('.ui.dropdown').dropdown();
+    $(function() {
+        $('.ui.dropdown').dropdown();
+        $( ".ui.list" ).sortable();
+        $( ".ui.list" ).disableSelection();
+        $( ".ui.list, .ui.list ul" ).sortable({
+            connectWith: "ul"
+        }).disableSelection();
+    });
+
 </script>

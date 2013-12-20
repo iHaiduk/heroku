@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MongoConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="label" value="ncast" />
+          <option name="password" value="9322022" />
+          <option name="serverName" value="ds039487.mongolab.com" />
+          <option name="serverPort" value="39487" />
+          <option name="userDatabase" value="ncast" />
+          <option name="username" value="ncast" />
+        </ServerConfiguration>
+      </list>
+    </option>
+  </component>
+</project>
+

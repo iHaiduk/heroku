@@ -3,11 +3,14 @@ var express = require('express'),
     app = express(),
     router = require(__dirname + '/router');
 
+
 // configuration settings  :
 app.engine('ejs', engine);
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+
+
 
 /*app.get('/',function(req,res,next){
     res.render('site/index', { title: 'test', message: 'body' } );

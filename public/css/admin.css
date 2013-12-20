@@ -1,3 +1,37 @@
 body{
     margin: 0;
 }
+
+
+
+.ui.selectedmenu{
+    margin-left: 30%;
+}
+ul.ui.list, ul.ui.list ul{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+ul.ui.list li:before, .ui.bulleted.list .item:before{
+    display: none;
+}
+ul.ui.list li .ui.dropdown{
+    float: right;
+}
+ul.ui.list li .ui.dropdown .text{
+    font-size: 12px;
+}
+ul.ui.list li .ui.dropdown .menu{
+    width: 140px;
+}
+.ui-sortable-placeholder {
+    border: 1px dotted black;
+    visibility: visible !important;
+    height: 50px !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: rgba(100,100,100,0.1);
+}
+.ui-sortable-placeholder * {
+    visibility: hidden;
+}
